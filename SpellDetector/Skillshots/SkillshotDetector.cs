@@ -247,14 +247,14 @@ namespace SpellDetector.Skillshots
                             {
                                 var v = minion.ServerPosition.To2D() - skillshot.Caster.ServerPosition.To2D();
                                 if (minion.Name == "Seed" && edge1.CrossProduct(v) > 0 && v.CrossProduct(edge2) > 0 &&
-                                    minion.Distance(skillshot.Caster) < 800 &&
+                                    minion.Distance(skillshot.Caster,false) < 800 &&
                                     (minion.Team != ObjectManager.Player.Team))
                                 {
                                     var start = minion.ServerPosition.To2D();
                                     var end = skillshot.Caster.ServerPosition.To2D()
                                         .Extend(
                                             minion.ServerPosition.To2D(),
-                                            skillshot.Caster.Distance(minion) > 200 ? 1300 : 1000);
+                                            skillshot.Caster.Distance(minion,false) > 200 ? 1300 : 1000);
 
                                     var skillshotToAdd = new Skillshot(
                                         skillshot.DetectionType, skillshot.SkillshotData, skillshot.StartTick, start,
